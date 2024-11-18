@@ -37,6 +37,9 @@ jobs:
       - simple_deployment_pipeline
     runs-on: ubuntu-20.04
     steps:
+      - name: list dir
+        run: ls -l
+
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
         env:
