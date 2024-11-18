@@ -1,0 +1,16 @@
+name: Test Secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  debug_secrets:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Debug Secrets
+        run: |
+          echo "Testing secrets..."
+          echo "RENDER_SERVICE_ID is set: ${{ secrets.RENDER_SERVICE_ID != '' }}"
+          echo "RENDER_API_KEY is set: ${{ secrets.RENDER_API_KEY != '' }}"
