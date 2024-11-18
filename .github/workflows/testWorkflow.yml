@@ -8,6 +8,7 @@ on:
 jobs:
   debug_secrets:
     runs-on: ubuntu-20.04
+    environment: Render Deployment Workflow
     steps:
       - name: Debug Secrets
         run: |
