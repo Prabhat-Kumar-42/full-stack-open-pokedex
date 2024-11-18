@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
+  runs-on: ubuntu-20.04
   debug_secrets:
-    runs-on: ubuntu-20.04
     environment: Render Deployment Workflow
     steps:
       - name: Debug Secrets
@@ -15,3 +15,18 @@ jobs:
           echo "Testing secrets..."
           echo "RENDER_SERVICE_ID is set: ${{ secrets.RENDER_SERVICE_ID != '' }}"
           echo "RENDER_API_KEY is set: ${{ secrets.RENDER_API_KEY != '' }}"
+  a_test_job:
+    steps:
+      - uses: actions/checkout@v4
+      - name: github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: commits
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
+        run: echo "$COMMITS"
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        run: echo "$COMMIT_MESSAGES"
